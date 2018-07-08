@@ -54,7 +54,7 @@
 								</td>
 								<td>客户级别 ：</td>
 								<td>
-								<s:select class="textbox"
+								<s:select class="textbox" id="sChannel2"
 														style="WIDTH: 180px" maxLength="50" name="dictCustLevel.did" list="levelList" headerKey="" headerValue="--请选择--" listKey="did" listValue="ditemname"></s:select>						
 								</td>
 							</TR>
@@ -62,7 +62,7 @@
 							<TR>
 								<td>信息来源：</td>
 								<td>
-								<s:select class="textbox"
+								<s:select class="textbox" id="sChannel2"
 														style="WIDTH: 180px" maxLength="50" name="custSource.did" list="sourceList" listKey="did" listValue="ditemname" headerKey="" headerValue="--请选择--"></s:select>						
 								</td>
 								<td>联系人：</td>
