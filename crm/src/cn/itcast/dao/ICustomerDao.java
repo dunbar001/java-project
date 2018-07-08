@@ -9,4 +9,5 @@ import cn.itcast.domain.Customer;
 public interface ICustomerDao {
 	List<Customer> findAllByCriteria(DetachedCriteria criteria);
 	void save(Customer customer);
+	void deleteByCid(Customer customer);
 }

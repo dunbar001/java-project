@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.dao.support.DaoSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,6 +47,12 @@ public class CustomerServiceImpl implements ICustomerService {
 	@Override
 	public List<Dict> findCustomerSources() {
 		return dictDao.findSourcesByCode("002");
+	}
+
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRED)
+	@Override
+	public void deleteCustomer(Customer customer) {
+		customerDao.deleteByCid(customer);
 	}
 
 }

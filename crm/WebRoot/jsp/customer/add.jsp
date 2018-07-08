@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,11 +15,9 @@
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/customerServlet?method=addsubmit"
-		method=post>
-		
-
+<s:form id="form1" name="form1"
+		action="%{pageContext.request.contextPath }/saveCustomer.action"
+		method="post">
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -52,13 +51,13 @@
 							<TR>
 								<td>客户名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custName">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="custName"></s:textfield>
 								</td>
 								<td>客户级别 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custLevel">
+								<s:select class="textbox" id="sChannel2"
+														style="WIDTH: 180px" name="dictCustLevel.did" list="levelList" listKey="did" listValue="ditemname" headerKey="" headerValue="--请选择--"></s:select>
 								</td>
 							</TR>
 							
@@ -66,8 +65,8 @@
 								
 								<td>信息来源 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custSource">
+								<s:select class="textbox" id="sChannel2"
+														style="WIDTH: 180px" name="custSource.did" list="sourceList" listKey="did" listValue="ditemname" headerKey="" headerValue="--请选择--"></s:select>
 								</td>
 								<td>联系人：</td>
 								<td>
@@ -81,13 +80,13 @@
 								
 								<td>固定电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custPhone">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="custPhone"></s:textfield>
 								</td>
 								<td>移动电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custMobile">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="custMobile"></s:textfield>
 								</td>
 							</TR>
 							
@@ -142,6 +141,6 @@
 				</TR>
 			</TBODY>
 		</TABLE>
-	</FORM>
+</s:form>
 </BODY>
 </HTML>

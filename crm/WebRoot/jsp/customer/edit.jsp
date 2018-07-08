@@ -49,8 +49,8 @@
 							<TR>
 								<td>客户名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-											style="WIDTH: 180px" maxLength=50 name="custName" value="${customer.custName }">
+								<s:textfield class="textbox" id="sChannel2"
+											style="WIDTH: 180px" maxLength="50" name="custName"></s:textfield>
 								</td>
 								<td>客户级别 ：</td>
 								<td>
@@ -76,13 +76,13 @@
 								
 								<td>固定电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custPhone" value="${customer.custPhone }">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="custPhone"></s:textfield>
 								</td>
 								<td>移动电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="custMobile" value="${customer.custMobile }">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="custMobile"></s:textfield>
 								</td>
 							</TR>
 							

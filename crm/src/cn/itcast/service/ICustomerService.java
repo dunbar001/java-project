@@ -13,4 +13,5 @@ public interface ICustomerService {
 	void saveCustomer(Customer customer);
 	List<Dict> findCustomerLevels();
 	List<Dict> findCustomerSources();
+	void deleteCustomer(Customer customer);
 }

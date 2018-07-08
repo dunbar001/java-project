@@ -29,4 +29,9 @@ public class CustomerDao implements ICustomerDao {
 	public void save(Customer customer) {
 		hibernateTemplate.save(customer);
 	}
+
+	@Override
+	public void deleteByCid(Customer customer) {
+		hibernateTemplate.delete(customer);
+	}
 }

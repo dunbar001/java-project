@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.ModelDriven;
 @Scope("prototype")
 @Results({
 	@Result(name="customerList",location="/jsp/customer/list.jsp"),
-	@Result(name="addCustomer",location="/jsp/customer/edit.jsp"),
+	@Result(name="addCustomer",location="/jsp/customer/add.jsp"),
 	@Result(name="findAllCustomer",type="redirect",location="findAllCustomer.action"),
 })
 public class CustomerAction extends ActionSupport implements
@@ -34,7 +34,7 @@ public class CustomerAction extends ActionSupport implements
 	@Resource(name="customerService")
 	private ICustomerService service;
 	
-	private Customer customer;
+	private Customer customer = new Customer();
 	@Override
 	public Customer getModel() {
 		return customer;
@@ -70,6 +70,13 @@ public class CustomerAction extends ActionSupport implements
 	
 	@Action("saveCustomer")
 	public String saveCustomer(){
+		service.saveCustomer(customer);
+		return "findAllCustomer";
+	}
+	
+	@Action("deleteCustomer")
+	public String deleteCustomer(){
+		service.deleteCustomer(customer);
 		return "findAllCustomer";
 	}
 }
