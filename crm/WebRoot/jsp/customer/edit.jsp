@@ -15,9 +15,8 @@
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	<s:form id="form1" name="form1"
-		action="%{pageContext.request.contextPath }/saveCustomer.action" method="post">
-		<input type="hidden" name="custId" value="${customer.custId }"/>
+	<s:form action="editCustomer.action" namespace="/">
+		<input type="hidden" name="cid" value="${cid }"/>
 
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>

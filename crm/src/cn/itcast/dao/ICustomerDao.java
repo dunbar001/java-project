@@ -10,4 +10,6 @@ public interface ICustomerDao {
 	List<Customer> findAllByCriteria(DetachedCriteria criteria);
 	void save(Customer customer);
 	void deleteByCid(Customer customer);
+	Customer findById(Integer cid);
+	void update(Customer customer);
 }

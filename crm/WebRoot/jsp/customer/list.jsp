@@ -24,10 +24,7 @@
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	<FORM id="customerForm" name="customerForm"
-		action="${pageContext.request.contextPath }/customerServlet?method=list"
-		method=post>
-		
+	<s:form name="customerForm" action="findAllCustomer.action" namespace="/">
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -63,9 +60,20 @@
 											<TBODY>
 												<TR>
 													<TD>客户名称：</TD>
-													<TD><INPUT class=textbox id=sChannel2
-														style="WIDTH: 80px" maxLength=50 name="custName"></TD>
-													
+													<TD>
+														<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 80px" maxLength="50" name="custName"></s:textfield>
+														</TD>
+													<TD>客户等级：</TD>
+													<TD>
+														<s:select list="levelList" listKey="did" listValue="ditemname" headerKey="" headerValue="--请选择--" class="textbox" id="sChannel2"
+														style="WIDTH: 80px" name="dictCustLevel.did"></s:select>
+														</TD>
+														<TD>客户名来源：</TD>
+													<TD>
+														<s:select list="sourceList" listKey="did" listValue="ditemname" headerKey="" headerValue="--请选择--" class="textbox" id="sChannel2"
+														style="WIDTH: 80px" name="custSource.did"></s:select>
+														</TD>
 													<TD><INPUT class=button id=sButton2 type=submit
 														value=" 筛选 " name=sButton2></TD>
 												</TR>
@@ -100,9 +108,15 @@
 		<td><s:property value="#customer.custPhone"/></td>
 		<td><s:property value="#customer.custMobile"/></td>
 		<TD>
-			<s:a href="%{pageContext.request.contextPath }/editCustomer.action?cid=%{#customer.cid}">修改</s:a>
+			<s:a action="editUICustomer.action" namespace="/">
+				<s:param name="cid" value="%{cid}">
+				</s:param>
+			修改</s:a>
 			&nbsp;&nbsp;
-			<s:a href="%{pageContext.request.contextPath }/crm/deleteCustomer.action?cid=%{#customer.cid}" onclick="javascript:return confirm('确定删除吗？');">删除</s:a>
+			<s:a action="deleteCustomer.action" namespace="/" onclick="javascript:return confirm('确定删除吗？');">
+				<s:param name="cid" value="%{cid}">
+				</s:param>
+			删除</s:a>
 		</TD>
 	</TR>
 </s:iterator>
@@ -110,7 +124,7 @@
 											</TBODY>
 										</TABLE>
 									</TD>
-								</TR>
+								</TR><%--
 								
 								<TR>
 									<TD><SPAN id=pagelink>
@@ -126,7 +140,7 @@
 											</DIV>
 									</SPAN></TD>
 								</TR>
-							</TBODY>
+							--%></TBODY>
 						</TABLE>
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg"><IMG
@@ -146,6 +160,6 @@
 				</TR>
 			</TBODY>
 		</TABLE>
-	</FORM>
+</s:form>	
 </BODY>
 </HTML>

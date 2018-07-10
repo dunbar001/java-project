@@ -14,4 +14,6 @@ public interface ICustomerService {
 	List<Dict> findCustomerLevels();
 	List<Dict> findCustomerSources();
 	void deleteCustomer(Customer customer);
+	Customer findCustomerById(Integer cid);
+	void updateCustomer(Customer customer);
 }

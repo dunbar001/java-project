@@ -34,4 +34,14 @@ public class CustomerDao implements ICustomerDao {
 	public void deleteByCid(Customer customer) {
 		hibernateTemplate.delete(customer);
 	}
+
+	@Override
+	public Customer findById(Integer cid) {
+		return hibernateTemplate.get(Customer.class, cid);
+	}
+
+	@Override
+	public void update(Customer customer) {
+		hibernateTemplate.update(customer);
+	}
 }

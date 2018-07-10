@@ -55,4 +55,15 @@ public class CustomerServiceImpl implements ICustomerService {
 		customerDao.deleteByCid(customer);
 	}
 
+	@Override
+	public Customer findCustomerById(Integer cid) {
+		return customerDao.findById(cid);
+	}
+
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRED)
+	@Override
+	public void updateCustomer(Customer customer) {
+		customerDao.update(customer);
+	}
+
 }
