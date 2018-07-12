@@ -16,6 +16,7 @@ import cn.itcast.dao.impl.CustomerDao;
 import cn.itcast.domain.Customer;
 import cn.itcast.domain.Dict;
 import cn.itcast.service.ICustomerService;
+import cn.itcast.web.common.PageBean;
 
 @Service("customerService")
 @Transactional(readOnly=true,propagation=Propagation.SUPPORTS)
@@ -28,9 +29,10 @@ public class CustomerServiceImpl implements ICustomerService {
 	private IDictDao dictDao;
 	
 	@Override
-	public List<Customer> findCustomerByCriteria(DetachedCriteria criteria) {
-		System.out.println(customerDao);
-		return customerDao.findAllByCriteria(criteria);
+	public PageBean<Customer> findCustomerByCriteria(DetachedCriteria criteria,Integer pageindex) {
+		int totalRecords = customerDao.getTotalRecords(criteria);
+		if(pageindex==null) pageindex=1;
+		return customerDao.findAllByCriteria(criteria,pageindex,totalRecords);
 	}
 
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRED)

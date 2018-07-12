@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.CountProjection;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import cn.itcast.dao.ICustomerDao;
 import cn.itcast.domain.Customer;
+import cn.itcast.web.common.PageBean;
 
 @Repository("customerDao")
 public class CustomerDao implements ICustomerDao {
@@ -21,8 +24,11 @@ public class CustomerDao implements ICustomerDao {
 	private HibernateTemplate hibernateTemplate;
 	
 	@Override
-	public List<Customer> findAllByCriteria(DetachedCriteria criteria) {
-		return (List<Customer>) hibernateTemplate.findByCriteria(criteria);
+	public PageBean<Customer> findAllByCriteria(DetachedCriteria criteria,int pageindex,int totalrecords) {
+		PageBean<Customer> page = new PageBean<Customer>(pageindex, totalrecords);
+		List<Customer> customers = (List<Customer>) hibernateTemplate.findByCriteria(criteria,page.getPageindex(),page.getPagesize());
+		page.setPageList(customers);
+		return page;
 	}
 
 	@Override
@@ -43,5 +49,13 @@ public class CustomerDao implements ICustomerDao {
 	@Override
 	public void update(Customer customer) {
 		hibernateTemplate.update(customer);
+	}
+	
+	@Override
+	public int getTotalRecords(DetachedCriteria criteria){
+		criteria.setProjection(Projections.rowCount());
+		Long totalRecords = (Long) hibernateTemplate.findByCriteria(criteria).get(0);
+		criteria.setProjection(null);
+		return totalRecords.intValue();
 	}
 }

@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Scope;
 import cn.itcast.domain.Customer;
 import cn.itcast.domain.Dict;
 import cn.itcast.service.ICustomerService;
+import cn.itcast.web.common.PageBean;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -39,9 +40,10 @@ public class CustomerAction extends ActionSupport implements
 	@Resource(name="customerService")
 	private ICustomerService service;
 	private Customer customer = new Customer();
-	private List<Customer> custList;
+	private PageBean<Customer> custList;
 	private List<Dict> levelList;
 	private List<Dict> sourceList;
+	private Integer pageindex;
 	
 	@Override
 	public Customer getModel() {
@@ -77,7 +79,7 @@ public class CustomerAction extends ActionSupport implements
 		if(customer.getCustSource()!=null && StringUtils.isNotBlank(customer.getCustSource().getDid())){
 			criteria.add(Restrictions.eq("custSource.did", customer.getCustSource().getDid()));
 		}
-		custList = service.findCustomerByCriteria(criteria);
+		custList = service.findCustomerByCriteria(criteria,pageindex);
 		return "customerList";
 	}
 	
@@ -100,13 +102,23 @@ public class CustomerAction extends ActionSupport implements
 		return "findAllCustomer";
 	}
 	
-	public List<Customer> getCustList() {
+	
+	public PageBean<Customer> getCustList() {
 		return custList;
 	}
+
 	public List<Dict> getLevelList() {
 		return levelList;
 	}
 	public List<Dict> getSourceList() {
 		return sourceList;
+	}
+
+	public Integer getPageindex() {
+		return pageindex;
+	}
+
+	public void setPageindex(Integer pageindex) {
+		this.pageindex = pageindex;
 	}
 }

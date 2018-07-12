@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@page import="org.apache.struts2.components.Include"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="/struts-tags" prefix="s" %>
@@ -11,20 +12,13 @@
 <LINK href="${pageContext.request.contextPath }/css/Manage.css" type=text/css
 	rel=stylesheet>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
-<SCRIPT language=javascript>
-	function to_page(page){
-		if(page){
-			$("#page").val(page);
-		}
-		document.customerForm.submit();
-		
-	}
-</SCRIPT>
 
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
+<s:debug></s:debug>
 	<s:form name="customerForm" action="findAllCustomer.action" namespace="/">
+		<s:hidden name="pageindex" id="page"></s:hidden>
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -99,7 +93,7 @@
 													<TD>操作</TD>
 												</TR>
 
-<s:iterator value="custList" var="customer">
+<s:iterator value="custList.pageList" var="customer">
 	<TR>
 		<td><s:property value="#customer.custName"/></td>
 		<td><s:property value="#customer.dictCustLevel.ditemname"/></td>
@@ -124,24 +118,14 @@
 											</TBODY>
 										</TABLE>
 									</TD>
-								</TR><%--
-								
-								<TR>
-									<TD><SPAN id=pagelink>
-											<DIV
-												style="LINE-HEIGHT: 20px; HEIGHT: 20px; TEXT-ALIGN: right">
-												共[<B>${total}</B>]条记录,[<B>${totalPage}</B>]页
-												,当前第[<b>${page}</b>]页
-												[<A href="javascript:to_page(${page-1})">前一页</A>]
-												[<A href="javascript:to_page(${page+1})">后一页</A>] 
-												
-												<input type="hidden" size="3" id="page" name="page" />
-												
-											</DIV>
-									</SPAN></TD>
 								</TR>
-							--%></TBODY>
-						</TABLE>
+								<TR>
+									<TD align="center">
+										<jsp:include page="/pager/pager.jsp"></jsp:include>
+									</TD>
+								</TR>
+							</TBODY>
+							</TABLE>
 					</TD>
 					<TD width=15 background="${pageContext.request.contextPath }/images/new_023.jpg"><IMG
 						src="${pageContext.request.contextPath }/images/new_023.jpg" border=0></TD>
