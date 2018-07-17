@@ -40,7 +40,8 @@ public class CustomerAction extends ActionSupport implements
 	@Resource(name="customerService")
 	private ICustomerService service;
 	private Customer customer = new Customer();
-	private PageBean<Customer> custList;
+	private PageBean<Customer> pList;
+
 	private List<Dict> levelList;
 	private List<Dict> sourceList;
 	private Integer pageindex;
@@ -79,7 +80,7 @@ public class CustomerAction extends ActionSupport implements
 		if(customer.getCustSource()!=null && StringUtils.isNotBlank(customer.getCustSource().getDid())){
 			criteria.add(Restrictions.eq("custSource.did", customer.getCustSource().getDid()));
 		}
-		custList = service.findCustomerByCriteria(criteria,pageindex);
+		pList = service.findCustomerByCriteria(criteria,pageindex);
 		return "customerList";
 	}
 	
@@ -103,8 +104,8 @@ public class CustomerAction extends ActionSupport implements
 	}
 	
 	
-	public PageBean<Customer> getCustList() {
-		return custList;
+	public PageBean<Customer> getpList() {
+		return pList;
 	}
 
 	public List<Dict> getLevelList() {

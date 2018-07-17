@@ -18,15 +18,15 @@ public class PageBean<T> {
 	private int begin;
 	private int end;
 	
-	public PageBean(int pageindex, int totalrecords) {
-		this.pageindex = (pageindex-1)*pagesize;
+	public PageBean(int page, int totalrecords) {
+		this.pageindex = (page-1)*pagesize;
 		this.totalrecords = totalrecords;
 		this.totalpages = totalrecords%pagesize==0?totalrecords/pagesize:totalrecords/pagesize+1;
-		this.prepage = pageindex-1;
+		this.prepage = page-1;
 		if(this.prepage<1){
 			this.prepage=1;
 		}
-		this.nextpage = pageindex+1;
+		this.nextpage = page+1;
 		if(this.nextpage>this.totalpages){
 			this.nextpage = this.totalpages;
 		}
@@ -34,8 +34,8 @@ public class PageBean<T> {
 		this.lastpage = totalpages;
 		
 		if(totalpages>10){
-			begin = pageindex-4;
-			end = pageindex+5;
+			begin = page-4;
+			end = page+5;
 			if(begin<1){
 				begin = 1;
 				end = begin + 9;

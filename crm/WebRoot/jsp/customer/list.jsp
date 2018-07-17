@@ -93,7 +93,7 @@
 													<TD>操作</TD>
 												</TR>
 
-<s:iterator value="custList.pageList" var="customer">
+<s:iterator value="pList.pageList" var="customer">
 	<TR>
 		<td><s:property value="#customer.custName"/></td>
 		<td><s:property value="#customer.dictCustLevel.ditemname"/></td>
@@ -121,7 +121,7 @@
 								</TR>
 								<TR>
 									<TD align="center">
-										<jsp:include page="/pager/pager.jsp"></jsp:include>
+										<%@ include file="/pager/pager.jsp" %>
 									</TD>
 								</TR>
 							</TBODY>

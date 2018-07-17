@@ -15,4 +15,5 @@ public interface ICustomerDao {
 	PageBean<Customer> findAllByCriteria(DetachedCriteria criteria,
 			int pageindex, int totalrecords);
 	int getTotalRecords(DetachedCriteria criteria);
+	List<Customer> findAll();
 }

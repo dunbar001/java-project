@@ -1,6 +1,7 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,11 +15,8 @@
 <META content="MSHTML 6.00.2900.3492" name=GENERATOR>
 </HEAD>
 <BODY>
-	<FORM id=form1 name=form1
-		action="${pageContext.request.contextPath }/linkmanServlet?method=addsubmit"
-		method=post>
-		
 
+<s:form action="saveLinkman.action" name="form1">
 		<TABLE cellSpacing=0 cellPadding=0 width="98%" border=0>
 			<TBODY>
 				<TR>
@@ -48,30 +46,32 @@
 						<TABLE cellSpacing=0 cellPadding=5  border=0>
 							<tr>
 								<td>所属客户：</td>
-								<td colspan="3"><input type="text" name="custId" style="WIDTH: 180px"/></td>
+								<td colspan="3">
+									<s:select class="textbox" id="sChannel2" name="customer.cid"
+														style="WIDTH: 180px" list="custList" listKey="cid" listValue="custName" headerKey="" headerValue="--请选择--"></s:select>
+								</td>
 							</tr>
 							<TR>
 								<td>联系人名称：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="lkmName">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="lkmName"/>
 								</td>
 								<td>联系人性别：</td>
 								<td>
-								<input type="radio" value="1" name="lkmGender">男
-								<input type="radio" value="2" name="lkmGender">女
+									<s:radio list="#{'1':'男','0':'女'}" name="lkmGender" value="1"></s:radio>
 								</td>
 							</TR>
 							<TR>
 								<td>联系人办公电话 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="lkmPhone">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="lkmPhone"/>
 								</td>
 								<td>联系人手机 ：</td>
 								<td>
-								<INPUT class=textbox id=sChannel2
-														style="WIDTH: 180px" maxLength=50 name="lkmMobile">
+								<s:textfield class="textbox" id="sChannel2"
+														style="WIDTH: 180px" maxLength="50" name="lkmMobile"/>
 								</td>
 							</TR>
 							<tr>
@@ -101,6 +101,6 @@
 				</TR>
 			</TBODY>
 		</TABLE>
-	</FORM>
+</s:form>
 </BODY>
 </HTML>

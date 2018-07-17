@@ -18,4 +18,5 @@ public interface ICustomerService {
 	void updateCustomer(Customer customer);
 	PageBean<Customer> findCustomerByCriteria(DetachedCriteria criteria,
 			Integer pageindex);
+	List<Customer> findAllCustomers();
 }

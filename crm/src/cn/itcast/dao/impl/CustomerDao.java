@@ -58,4 +58,10 @@ public class CustomerDao implements ICustomerDao {
 		criteria.setProjection(null);
 		return totalRecords.intValue();
 	}
+
+	@Override
+	public List<Customer> findAll() {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Customer.class);
+		return (List<Customer>) hibernateTemplate.findByCriteria(criteria);
+	}
 }
